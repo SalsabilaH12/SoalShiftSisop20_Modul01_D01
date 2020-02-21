@@ -8,7 +8,7 @@
     sedikit berdasarkan 2 negara bagian (state) hasil poin b
     
    
-    # (a)
+# (a)
 printf ">> Nomor 1a:\n"
 awk -F ',' '
 FNR > 1 {a[$13] = a[$13] + $21}
@@ -23,7 +23,6 @@ END {
     }
     print region, max;
 }' Sample-Superstore.csv
-
 
 # (b)
 printf "\n>> Nomor 1b:\n"
