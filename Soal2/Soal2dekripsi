@@ -1,0 +1,34 @@
+#!/bin/bash
+
+input=$(echo $(echo $1 | awk -F '.' '{print $1}') | grep -i "^[a-z]\+$")
+
+now=`pwd`
+if [ $input ]
+then
+
+	for target in "${@}"; do
+        inode=$(stat -c '%i' "${target}")
+        fs=$(df  --output=source "${target}"  | tail -1)
+        crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*' | awk '{print $4}' | awk -F ':' '{print $1}')
+	done
+  arraya=({a..z})
+	arrayA=({A..Z})
+    hour=$crtime
+	  hour2=$(($hour-1))
+  change1=${arraya[hour]}
+	change2=${arraya[hour2]}
+	change3=${arrayA[hour]}
+	change4=${arrayA[hour2]}
+
+  filename=$(echo "$input" | tr {$change3-ZA-$change4} '[A-Z]' | tr {$change1-za-$change2} '[a-z]')
+	echo "apakah Anda ingin mendekripsi nama file yang telah dienkripsi" $input".txt ->" $filename.txt"?"  "Ya"
+
+	read answer
+	if [[ $answer == "Ya" ]]
+	then
+		mv "${now}/$input.txt" "${now}/$filename.txt"
+		echo "Yeay.. file" $input".txt telah berhasil di-rename menjadi" $filename".txt"
+	fi
+else
+	echo "argumen yang diinputkan dan HANYA berupa alphabet dari nama file yang telah di enkripsi."
+fi
