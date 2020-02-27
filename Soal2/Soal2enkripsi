@@ -1,0 +1,23 @@
+#!/bin/bash
+
+input=$(echo $(echo $1 | awk -F '.' '{print $1}') | grep -i "^[a-z]\+$")
+
+if [ $input ]
+then
+	thisfolder=`pwd`
+	this=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 28 | head -n 1)
+	arraya=({a..z})
+	arrayA=({A..Z})
+    hour=$(date +"%H")
+		hour2=$(($hour-1))
+	change1=${arraya[hour]}
+	change2=${arraya[hour2]}
+	change3=${arrayA[hour]}
+	change4=${arrayA[hour2]}
+
+	filename=$(echo "$input" | tr '[A-Z]' {$change3-ZA-$change4} | tr '[a-z]' {$change1-za-$change2})
+	echo $this > "$filename".txt
+	echo "random password telah disimpan ke dalam file bernama" $input".txt yang telah di enkripsi :)"
+else
+	echo "argumen yang diinputkan dan HANYA berupa alphabet."
+fi
