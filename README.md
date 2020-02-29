@@ -271,7 +271,7 @@ done
 -	0-5 adalah hari minggu - jumat (setiap hari kecuali hari sabtu)
 
  
-**C. Maka dari itu buatlah sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253). Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak". Hint : Gunakan wget.log untuk membuat location.log yang isinya merupakan hasil dari grep "Location".
+**C. Maka dari itu buatlah sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253). Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak". Hint : Gunakan wget.log untuk membuat location.log yang isinya merupakan hasil dari grep "Location".**
     
 Code:
 ```
@@ -326,6 +326,6 @@ done
 -	count2=$(ls kenangan/ |awk -F '_' '{print $2}' | sort -rn | head -1) menyimpan angka terakhir pada gambar file kenangan.
 -	if [[ $count2 ]] jika tidak memiliki nilai maka nama filenya berubah menjadi kenangan_1 dan dipindahkan juga ke folder kenangan.
 -	cat wget.log >> wget.log.bak Memindahkan isi file wget.log ke file wget.log.bak tanpa menghapus data pada file wget.log.bak.
--	> wget.log Menghapus isi file wget.log
+-	 wget.log Menghapus isi file wget.log
 
 
