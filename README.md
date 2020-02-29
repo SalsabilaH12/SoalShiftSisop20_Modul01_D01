@@ -1,12 +1,7 @@
 # SoalShiftSisop20_Modul01_D01
 
 ## SOAL 1
-**a.Tentukan wilayah bagian (region) mana yang memiliki keuntungan (profit)           paling sedikit
-
-    b. Tampilkan 2 negara bagian (state) yang memiliki keuntungan (profit) paling
-    sedikit berdasarkan hasil poin a
-    c. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling
-    sedikit berdasarkan 2 negara bagian (state) hasil poin b
+**a. Tentukan wilayah bagian (region) mana yang memiliki keuntungan (profit)           paling sedikit
     
 Code :
 ```
@@ -34,6 +29,10 @@ END {
 -	Sample-Superstore.csv nama file yang dijadikan input
 Pada intinya kode di atas bekerja dengan cara membuat array berdasarkan State dan menambahkan Profitnya. Setelah pencarian selesai, dicari region dengan profit terkecil pada blok END.
 
+b. Tampilkan 2 negara bagian (state) yang memiliki keuntungan (profit) paling
+    sedikit berdasarkan hasil poin a
+    c. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling
+    sedikit berdasarkan 2 negara bagian (state) hasil poin b
 # (b)
 printf "\n>> Nomor 1b:\n"
 awk -F ',' '{
