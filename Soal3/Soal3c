@@ -1,0 +1,41 @@
+#!/bin/bash
+now=`pwd`
+for n in $(seq 1 28)
+do
+wget -O pdkt_kusuma_$n https://loremflickr.com/320/240/cat -a wget.log
+nm=$(grep "Location" wget.log | tail -1 | awk '{print $2}')
+ echo $nm
+
+ if [[ ! $(ls ${now} | grep "Location.log") && ! $(ls ${now} | grep "duplicate") && ! $(ls ${now} | grep "kenangan") ]]
+ then
+  touch Location.log
+  mkdir duplicate kenangan
+ fi
+
+if [[ $(grep "$nm" Location.log) ]]
+ then
+  echo tes1
+  count1=$(ls duplicate/ |awk -F '_' '{print $2}' | sort -rn | head -1)
+
+  if [[ $count1 ]]
+  then
+   mv "${now}/pdkt_kusuma_$n" "${now}/duplicate/duplicate_$(($count1+1))"
+  else
+   mv "${now}/pdkt_kusuma_$n" "${now}/duplicate/duplicate_1"
+  fi
+ else
+  echo tes2
+  count2=$(ls kenangan/ |awk -F '_' '{print $2}' | sort -rn | head -1)
+
+  if [[ $count2 ]]
+                then
+                        mv "${now}/pdkt_kusuma_$n" "${now}/kenangan/kenangan_$(($count2+1))"
+  else
+                        mv "${now}/pdkt_kusuma_$n" "${now}/kenangan/kenangan_1"
+  fi
+
+  echo $tes1 >> Location.log
+ fi
+
+
+done
